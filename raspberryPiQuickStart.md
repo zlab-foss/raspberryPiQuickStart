@@ -34,7 +34,22 @@ Seconde Diagram:
 
 ## Code BOX
 
+<br>
 
+<details><summary>install RPi.GPIO</summary>
+<p>
+
+***NOTE:*** install this module in virtual environment.
+```
+pip install RPi.GPIO
+```
+
+<br>
+
+</p>
+</details>
+
+<br>
 
 ```py
  # Simple LED blink...
@@ -86,9 +101,11 @@ In a nutshell, BCM pins maybe differ in raspberrypi's boards but Board pins are 
 [Further details](https://iot4beginners.com/difference-between-bcm-and-board-pin-numbering-in-raspberry-pi/) 
 
 <br>
-
 </p>
 </details>
+
+<br>
+
 ### Simple Led Control
 
 dfghgfhgfhl
