@@ -23,11 +23,20 @@ Seconde Diagram:
 
 ![Raspberry Pi 4 Model B Pins Configuration](./pics/R-Pi-4-GPIO-Pinout.jpg)
 
+----
+
+<br>
+
+## what is a virtual environment and why you are asked to create one for most codes? 
+[You will find the answer HERE](https://realpython.com/python-virtual-environments-a-primer/#activate-it)
+
+<br>
+
 ## Code BOX
 
 ### Simple Led Control
 
-dfghgfhgfh
+dfghgfhgfhl
 
 
 ### picture2
