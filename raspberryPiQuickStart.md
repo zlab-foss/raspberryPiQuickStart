@@ -114,10 +114,15 @@ Or use GPIO pins.. BUT it's recommended to use USB port.
 ***NOTE:*** Raspbery pi operating at 3.3v, so if it's connected to Arduino a logic level converter should be used.
 
 **Detecting Arduino Board:**
+
 ```
 ls /dev/tty*
 ```
-***NOTE:*** when Arduino is connected */dev/ttyACM0* or */dev/ttyUSB0* may appear in the list. BUT keep in mind that the number maybe different.
+<span style = "color:red">
+<b><em>NOTE:</em></b> when Arduino is connected */dev/ttyACM0* or */dev/ttyUSB0* may appear in the list. BUT keep in mind that the number maybe different.
+</span>
+
+<br>
 
 **To find ACM in the list of ports:**
 ```py
@@ -126,6 +131,40 @@ from os import system
 print("Connected devices include 'ACM' are: ")
 system("ls /dev/tty* | grep ACM")
 ```
+
+
+
+# Hardware permission for Serial access
+To avoid Errorssuch as ***serial.serialutil.SerialException: [Errno 13] could not open port /dev/ttyACM0: [Errno 13] Permission denied: ‘/dev/ttyACM0’*** run the following code block to make sure you have access to the port:
+
+```Shell
+$ sudo adduser your_username dialout
+```
+<span style="color:red">
+Once you've been added the dialgroup you need to <b>REBOOT</b> &nbsp;your RPi or just logout nad login again to apply changes.
+</span>
+
+<br>
+
+### Use ***pyserial*** to use Serial interface with Python 
+
+```Shell
+python3 -m pip install pyserial
+```
+<br>
+
+
+
+<span>
+
+
+
+<br>
+
+[Further information for RPi prmissions](https://roboticsbackend.com/raspberry-pi-hardware-permissions/)
+
+
+
 
 
 [Further information](https://roboticsbackend.com/raspberry-pi-arduino-serial-communication/)
