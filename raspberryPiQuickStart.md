@@ -27,14 +27,50 @@ Seconde Diagram:
 
 <br>
 
-## How to create and activate a virtual environment, what is a virtual environment and why you are asked to create one for most codes? 
+<h2><span style = "color : orange">Code BOX </span></h2>
+
+<br>
+
+## what is a virtual environment and why you are asked to create one for most codes? 
+
 [You will find the answer HERE](https://realpython.com/python-virtual-environments-a-primer/#activate-it)
 
 <br>
 
-## Code BOX
+## How to create and activate a virtual environment
+
+<span style = "color : yellow"> <b> Create<b> </span>
+
+```Shell
+$ python3 -m venv venv-name
+```
+<span style = "color : yellow"> <b> Activate<b> </span>
+
+```Shell
+$ source venv-name/bin/activate
+(venv-name) $
+```
+
+## Install pakages in the virtual Environment 
+
+```Shell
+(venv-name) $ python -m pip install <package-name>
+```
+
+**When you're done with the environment you'd better to diactivate it**
+
+```Shell
+(venv-name) $ deactivate
+$
+```
+
+<span style = "color : red">
+<b><em>NOTE:</em><b> If you want to get back to the created environment, <span style = "color : yellow">  just Return up to the <b>ACTIVATED<b> section. </span> 
+</span>
 
 <br>
+
+## Simple LED blink with RPi
 
 <details><summary>install RPi.GPIO</summary>
 <p>
