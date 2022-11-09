@@ -144,9 +144,13 @@ $ sudo adduser your_username dialout
 Once you've been added the dialgroup you need to <b>REBOOT</b> &nbsp;your RPi or just logout nad login again to apply changes.
 </span>
 
-<br>
+<br><br>
 
 ### Use ***pyserial*** to use Serial interface with Python 
+<br>
+
+<span style = "color : red"> <b><em>NOTE:</em><b> &nbsp; Do not forget to install the package in the <b> Virtual Environment </b> that you've created.
+
 
 ```Shell
 python3 -m pip install pyserial
