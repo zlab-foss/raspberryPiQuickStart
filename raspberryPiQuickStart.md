@@ -4,10 +4,26 @@
 
 <br>
 
-[Simple Led Control](#simple-led-control)
+[Quick start with Raspberry pi](#quick-start)
 
-[more](#picture2)
+[RPi pinout](#pinout)
 
+[Virtual Environment](#how-to-create-and-activate-a-virtual-environment)
+
+[Simple LED blink with RPi](#simple-led-blink-with-rpi)
+
+[Connecting to Arduino](#connecting-raspberry-pi-to-arduino)
+
+[Detecting Arduino port](#detecting-arduino-board)
+
+[Hardware permission in RPi](#hardware-permission-for-serial-access)
+
+[Simple communicate to Arduino code](#simple-communicate-to-arduino-communicate-to-Arduino)
+
+
+
+---
+<br>
 
 #### Quick Start
 
@@ -149,7 +165,7 @@ Or use GPIO pins.. BUT it's recommended to use USB port.
 ![RPi to Arduino connection using GPIO pins](./pics/raspberrypi_arduino_serial_gpio.png)
 ***NOTE:*** Raspbery pi operating at 3.3v, so if it's connected to Arduino a logic level converter should be used.
 
-**Detecting Arduino Board:**
+## Detecting Arduino Board:
 
 ```
 $ ls /dev/tty*
@@ -249,7 +265,7 @@ else:
     raise SerialException(msg.errno, "could not open port {}: {}".format(self._port, msg))
     serial.serialutil.SerialException: [Errno 13] could not open port /dev/ttyACM0: [Errno 13] Permission denied: '/dev/ttyACM0'` 
 
-pops up, &nbsp; run the following code block
+pops up, &nbsp;run the following code block
 
 
 ```Shell
@@ -260,7 +276,3 @@ $ sudo chmod 666 /dev/ttyACM0
 
 [Further information](https://roboticsbackend.com/raspberry-pi-arduino-serial-communication/)
 
-
-### picture2
-
-fdfdfdf
