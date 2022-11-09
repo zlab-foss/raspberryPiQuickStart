@@ -27,7 +27,7 @@ Seconde Diagram:
 
 <br>
 
-## what is a virtual environment and why you are asked to create one for most codes? 
+## How to create and activate a virtual environment, what is a virtual environment and why you are asked to create one for most codes? 
 [You will find the answer HERE](https://realpython.com/python-virtual-environments-a-primer/#activate-it)
 
 <br>
@@ -77,9 +77,6 @@ while(blink_repeat>0)
 
 <details><summary> what is BCM in GPIO.setmode(GPIO.BCM) </summary>
 <p>
-
-
-
 There are two kinds of Input and Output pin numbering for the Raspberry pi. One is the BCM and the other is BOARD. Basically these pin numberings are useful for writing python script for the Raspberry Pi. 
 
 <br>
@@ -91,7 +88,7 @@ There are two kinds of Input and Output pin numbering for the Raspberry pi. One 
 **Broadcom SOC Channel**– BCM refers to the “Broadcom SOC channel” number, which is the numbering inside the chip which is used on the Raspberry Pi. These numbers changed between board versions as you can see in the previous tables for the 26-pin header type 1 versus 2, and or not sequential. 
 
 
-***NOTE: ***
+***NOTE:***
 The BCM numbers changed between versions of the Pi1 Model B, and you’ll need to work out which one you have guide here. So it may be safer to use the BOARD numbers if you are going to use more than one Raspberry Pi in a project.
 
 <br>
@@ -106,9 +103,32 @@ In a nutshell, BCM pins maybe differ in raspberrypi's boards but Board pins are 
 
 <br>
 
-### Simple Led Control
+## Connecting Raspberry pi to Arduino
 
-dfghgfhgfhl
+You can simply send data via USB cable.
+![RPi to Arduino connection](./pics/raspberrypi_arduino_uno_serial_usb.png)
+<br>
+
+Or use GPIO pins.. BUT it's recommended to use USB port.
+![RPi to Arduino connection using GPIO pins](./pics/raspberrypi_arduino_serial_gpio.png)
+***NOTE:*** Raspbery pi operating at 3.3v, so if it's connected to Arduino a logic level converter should be used.
+
+**Detecting Arduino Board:**
+```
+ls /dev/tty*
+```
+***NOTE:*** when Arduino is connected */dev/ttyACM0* or */dev/ttyUSB0* may appear in the list. BUT keep in mind that the number maybe different.
+
+**To find ACM in the list of ports:**
+```py
+from os import system
+
+print("Connected devices include 'ACM' are: ")
+system("ls /dev/tty* | grep ACM")
+```
+
+
+[Further information](https://roboticsbackend.com/raspberry-pi-arduino-serial-communication/)
 
 
 ### picture2
