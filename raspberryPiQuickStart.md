@@ -152,7 +152,7 @@ Or use GPIO pins.. BUT it's recommended to use USB port.
 **Detecting Arduino Board:**
 
 ```
-ls /dev/tty*
+$ ls /dev/tty*
 ```
 <span style = "color:red">
 <b><em>NOTE:</em></b> when Arduino is connected */dev/ttyACM0* or */dev/ttyUSB0* may appear in the list. BUT keep in mind that the number maybe different.
@@ -189,7 +189,7 @@ Once you've been added the dialgroup you need to <b>REBOOT</b> &nbsp;your RPi or
 
 
 ```Shell
-python3 -m pip install pyserial
+$ python3 -m pip install pyserial
 ```
 <br>
 <span>
@@ -239,7 +239,7 @@ if len(port)>0:
     arduino_port = port
     ReceivedData(arduino_port)
 else:
-    print("Error")
+    print("Error: No Device is connected")
 
 ```
 
