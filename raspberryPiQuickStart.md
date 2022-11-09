@@ -192,20 +192,71 @@ Once you've been added the dialgroup you need to <b>REBOOT</b> &nbsp;your RPi or
 python3 -m pip install pyserial
 ```
 <br>
-
-
-
 <span>
-
-
-
 <br>
 
 [Further information for RPi prmissions](https://roboticsbackend.com/raspberry-pi-hardware-permissions/)
 
 
+## Simple communicate to Arduino
+***Arduino code:***
+
+```ino
+void setup()
+{
+    Serial.begin(9600);
+}
+
+void loop()
+{
+    Serila.println("Hi to you");
+    delay(500);
+}
+```
+<br>
+
+***RPi code:***
+```py 
+from os import system
+import serial
 
 
+def ReceivedData(port):
+    ser = serial.Serial(port, 9600, timeout=1)
+    ser.reset_input_buffer()
+    while True:
+        if ser.in_waiting > 0:
+            line = ser.readline().decode('utf-8').rstrip()
+            print(line)
+
+system("ls /dev/tty* | grep ACM > command_output.txt")
+with open ("./command_output.txt", 'r') as port_name:
+    port = port_name.readline()
+    # There is a '\n' at the end of the port that has to be removed
+    port = port.strip()
+
+if len(port)>0:
+    arduino_port = port
+    ReceivedData(arduino_port)
+else:
+    print("Error")
+
+```
+
+***NOTE:*** &nbsp;if the error
+
+`in open
+    raise SerialException(msg.errno, "could not open port {}: {}".format(self._port, msg))
+    serial.serialutil.SerialException: [Errno 13] could not open port /dev/ttyACM0: [Errno 13] Permission denied: '/dev/ttyACM0'` 
+
+pops up, &nbsp; run the following code block
+
+
+```Shell
+$ sudo chmod 666 /dev/ttyACM0
+```
+
+<br>
 
 [Further information](https://roboticsbackend.com/raspberry-pi-arduino-serial-communication/)
 
