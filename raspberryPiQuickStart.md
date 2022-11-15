@@ -20,7 +20,7 @@
 
 [Simple communicate to Arduino code](#simple-communicate-to-arduino-communicate-to-Arduino)
 
-
+[Send and receive data via Serial](#send-and-receive-data-via-serial-port)
 
 ---
 <br>
@@ -276,3 +276,49 @@ $ sudo chmod 666 /dev/ttyACM0
 
 [Further information](https://roboticsbackend.com/raspberry-pi-arduino-serial-communication/)
 
+
+## Send and Receive data via Serial port
+
+```py
+from os import system
+from serial import Serial
+import time
+
+validCommands = ['on','off']
+
+def discoverConnectedPort():
+    ## find 'ACM' in the list of ports and write it in a txt file
+    system("ls /dev/tty* | grep ACM > command_output.txt")
+    with open ("./command_output.txt", 'r') as grepOutputFile:
+        portName = grepOutputFile.readline()
+        # There is a '\n' at the end of the port that has to be removed
+        portName = portName.strip()
+        ## it returns a string like '/dev/ttyACM1'
+        return portName
+
+with Serial(port = discoverConnectedPort(), baudrate= 9600, timeout=1) as arduino:
+    if arduino.isOpen():
+        # split the port name string by / and create a list of it, print the last element of it
+        # /dev/ttyACM1 -> ['dev', 'ttyACM1']   
+        print("{} connected!".format(arduino.port.split(sep='/')[-1]))  
+        while True:
+            command = input("your command >> ")
+            if (command == 'exit'):
+                exit()
+            
+            time.sleep(0.1) #wait for serial to open  
+            # Encode the command to utf-8
+            arduino.write(command.encode())
+
+            if command in validCommands:
+                # wait until something is in the buffer
+                while arduino.inWaiting()==0: pass
+                # if there is more that 0 byte in the buffer, read it
+                if (arduino.inWaiting() > 0):
+                    # There is a '\n' at the end of the message that has to be removed
+                    message = arduino.readline().decode('utf-8').rstrip()
+                    print(message)
+                    # reset input buffer
+                    arduino.flushInput()
+```
+[Further information](https://pyserial.readthedocs.io/en/latest/pyserial_api.html)
