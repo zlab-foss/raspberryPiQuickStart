@@ -289,6 +289,7 @@ void setup()
 {
     Serial.begin(9600)
     pinMode(LED_pin, OUTPUT);
+    Serial.println("Serial port is ready");
 }
 
 void loop()
