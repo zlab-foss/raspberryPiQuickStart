@@ -217,7 +217,7 @@ $ python3 -m pip install pyserial
 ## Simple communicate to Arduino
 ***Arduino code:***
 
-```ino
+```cpp
 void setup()
 {
     Serial.begin(9600);
@@ -279,12 +279,47 @@ $ sudo chmod 666 /dev/ttyACM0
 
 ## Send and Receive data via Serial port
 
+**Arduino code**
+
+```cpp
+
+#define LED_pin 13
+
+void setup()
+{
+    Serial.begin(9600)
+    pinMode(LED_pin, OUTPUT);
+}
+
+void loop()
+{
+    String command = ""
+    while(Serial.available()>0)
+    {
+        command = Serial.readString();
+
+        if (command == "LED on")
+        {
+            Serial.println("LED is on");
+            digitalWrite(LED_pin, HIGH);
+        }
+        else if(command == "LED off")
+        {
+            Serial.println("LED is off");
+            digitalWrite(LED_pin, LOW);
+        }
+    }
+}
+```
+
+**RPI code**
+
 ```py
 from os import system
 from serial import Serial
 import time
 
-validCommands = ['on','off']
+validCommands = ['LED on','LED off']
 
 def discoverConnectedPort():
     ## find 'ACM' in the list of ports and write it in a txt file
