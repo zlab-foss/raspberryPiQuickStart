@@ -289,7 +289,6 @@ void setup()
 {
     Serial.begin(9600)
     pinMode(LED_pin, OUTPUT);
-    Serial.println("Serial port is ready");
 }
 
 void loop()
@@ -356,5 +355,14 @@ with Serial(port = discoverConnectedPort(), baudrate= 9600, timeout=1) as arduin
                     print(message)
                     # reset input buffer
                     arduino.flushInput()
+```
+
+***NOTE:***&nbsp; if you want to send muliple lines to RPi, you need to change  `message = arduino.readline().decode('utf-8').rstrip()` to th efollowing code block
+
+```py
+
+for line in arduino.readlines():
+    message = line.decode('utf-8').rstrip()
+    print(message)
 ```
 [Further information](https://pyserial.readthedocs.io/en/latest/pyserial_api.html)
