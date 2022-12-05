@@ -243,7 +243,7 @@ def ReceivedData(port):
     while True:
         if ser.in_waiting > 0:
             line = ser.readline().decode('utf-8').rstrip()
-            print(line)
+            return line
 
 system("ls /dev/tty* | grep ACM > command_output.txt")
 with open ("./command_output.txt", 'r') as port_name:
@@ -253,7 +253,8 @@ with open ("./command_output.txt", 'r') as port_name:
 
 if len(port)>0:
     arduino_port = port
-    ReceivedData(arduino_port)
+    data = ReceivedData(arduino_port)
+    print(data)
 else:
     print("Error: No Device is connected")
 
